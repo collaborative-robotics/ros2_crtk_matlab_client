@@ -6,15 +6,17 @@ classdef wait_move_handle
     % Released under MIT License
 
     properties
+        ros_12
         class_instance
         start_time
     end
 
     methods
 
-        function self = wait_move_handle(class_instance)
+        function self = wait_move_handle(ros_12, class_instance)
+            self.ros_12 = ros_12;
             self.class_instance = class_instance;
-            self.start_time = rostime('now');
+            self.start_time = ros_12.now();
         end
 
         function result = wait(self, is_busy)
@@ -28,7 +30,7 @@ classdef wait_move_handle
             if nargin == 1
                 timeout = 30.0;
             end
-            if (rostime('now') - self.start_time) > rosduration(timeout)
+            if (self.ros_12.now() - self.start_time) > rosduration(timeout)
                result = false;
             else
                 result = self.class_instance.is_busy(self.start_time);
