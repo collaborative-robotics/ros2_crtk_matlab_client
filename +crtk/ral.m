@@ -1,4 +1,4 @@
-classdef ros_12 < handle
+classdef ral < handle
     properties (Access = private)
         node;
     end
@@ -14,12 +14,11 @@ classdef ros_12 < handle
     end
 
     methods
-        function self = ros_12(name)
+        function self = ral(name)
             self.node = ros2node(name);
         end
 
         function delete(self)
-            disp('deleting ros_12 object');
             delete(self.node);
         end
 
@@ -38,5 +37,6 @@ classdef ros_12 < handle
         function r = rate(self, desired_rate)
             r = ros2rate(self.node, desired_rate);
         end
+
     end
 end
