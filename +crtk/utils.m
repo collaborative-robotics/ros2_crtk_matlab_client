@@ -115,7 +115,7 @@ classdef utils < handle
             pose.orientation.z = quaternion(4);
         end
 
-        function ftransform = rame_to_ros_transform(frame, transform)
+        function transform = frame_to_ros_transform(frame, transform)
             % convert 4x4 homogeneous matrix to ROS transform
             transform.translation.x = frame(1, 4);
             transform.translation.y = frame(2, 4);
